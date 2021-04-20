@@ -1,0 +1,86 @@
+---
+layout: default
+title: Home
+---
+{% assign page_category = site.data.category_list[page.category] %}
+
+  {% include header.html %}
+    <div class="container-full", style="background-color: #f5f6ff">
+		<div class="container grid-xl">
+			<div class="columns negative-m-s">
+				{% for category in site.data.category_list %}
+				{% capture category_name %}{{ category | first }}{% endcapture %}
+				{% assign page_category = site.data.category_list[category_name] %}
+				<div class="column col-4 col-md-6 col-sm-12">
+					<div class="card card-link" onclick="expand('{{ page_category.name | replace:' ','-' }}')" style="cursor: pointer"> 
+					<div class="card-body text-center my-4">
+						<h5 class="text-bold">{{ page_category.name }}</h5>
+					</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+
+		<div id="details-About">
+			{% assign page = site.documents | where: "slug", "about" | first %}
+			{% include details.html %}
+		</div>
+		
+		<div id="details-Category-1">
+			{% assign page = site.documents | where: "slug", "category-1" | first %}
+			{% include details.html %}
+		</div>
+		
+		<div id="details-Category-2">
+			{% assign page = site.documents | where: "slug", "category-2" | first %}
+			{% include details.html %}
+		</div>
+		
+		<style>
+		#details-About {
+			height: 0px;
+			transition: height 1s ease;
+			overflow: hidden;
+			visibility: visible
+		}
+		
+		#details-Category-1 {
+			height: 0px;
+			transition: height 1s ease;
+			overflow: hidden;
+		}
+	
+		
+		#details-Category-2 {
+			height: 0px;
+			transition: height 1s ease;
+			overflow: hidden;
+		}
+		</style>
+		
+		<script>
+			function expand(name) {
+				var buttons = ["About", "Category-1", "Category-2"];
+				
+				if (buttons.includes(name)) {
+					var x = document.getElementById("details-".concat(name));
+					if (!x.style.height || x.style.height == "0px") {
+						for (i = 0; i < buttons.length; i++) {
+							var b = document.getElementById("details-".concat(buttons[i]));
+							b.style.transition = 'opacity 2s';
+							b.style.height = '0px';
+						}
+						x.style.transition = 'height 1s ease';
+						x.style.height = Array.prototype.reduce.call(x.childNodes, function(p, c) {return p + (c.offsetHeight || 0);}, 0) + 'px';
+					}
+					
+				}
+			}
+			
+			expand('About');
+		</script>
+		
+    </div>
+
+	

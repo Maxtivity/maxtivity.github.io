@@ -1,0 +1,14 @@
+#This file defines all the categories you are using
+
+
+about:
+    name: About
+    description: About Maxtivity
+
+category1:
+    name: Category 1
+    description: Category 1
+    
+category2:
+    name: Category 2
+    description: Category 2
