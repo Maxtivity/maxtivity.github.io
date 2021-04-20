@@ -40,7 +40,7 @@ subheader: Maximise your Activity
 #nav_item_three_link:
 
 # Build settings
-theme: jekyll-theme-cayman
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
   - jekyll-last-modified-at
